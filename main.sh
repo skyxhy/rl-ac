@@ -198,7 +198,7 @@ run_th_fixed_unit() {
         ".env.gnn_path = \"${model_path}/best_model.pt\"" \
         ".threshold.risk_threshold = 0.5" ".seed = ${seed}"
 
-    python -m code.train.simulation --config "$cfg"
+    python -m rlac.run.simulate --config "$cfg"
 }
 
 run_th_adaptive_unit() {
@@ -218,7 +218,7 @@ run_th_adaptive_unit() {
         ".env.gnn_path = \"${model_path}/best_model.pt\"" \
         ".threshold.risk_threshold = ${thr}" ".seed = ${seed}"
 
-    python -m code.train.simulation --config "$cfg"
+    python -m rlac.run.simulate --config "$cfg"
 }
 
 # --- RL Fixed: Train + Test ---
@@ -241,7 +241,7 @@ run_rl_fixed_train_unit() {
         ".env.scaler_path = \"${model_path}/scaler.pkl\"" \
         ".env.gnn_path = \"${model_path}/best_model.pt\""
 
-    python -m code.train.simulation --config "$cfg"
+    python -m rlac.run.simulate --config "$cfg"
 }
 
 run_rl_fixed_test_unit() {
@@ -266,7 +266,7 @@ run_rl_fixed_test_unit() {
         ".env.gnn_path = \"${model_path}/best_model.pt\"" \
         ".seed = ${seed}"
 
-    python -m code.train.simulation --config "$cfg"
+    python -m rlac.run.simulate --config "$cfg"
 }
 
 # --- RL Adaptive: Train + Test ---
@@ -289,7 +289,7 @@ run_rl_adaptive_train_unit() {
         ".env.scaler_path = \"${model_path}/scaler.pkl\"" \
         ".env.gnn_path = \"${model_path}/best_model.pt\""
 
-    python -m code.train.simulation --config "$cfg"
+    python -m rlac.run.simulate --config "$cfg"
 }
 
 run_rl_adaptive_test_unit() {
@@ -314,7 +314,7 @@ run_rl_adaptive_test_unit() {
         ".env.gnn_path = \"${model_path}/best_model.pt\"" \
         ".seed = ${seed}"
 
-    python -m code.train.simulation --config "$cfg"
+    python -m rlac.run.simulate --config "$cfg"
 }
 
 # --- CB Adaptive: Train + Test ---
@@ -337,7 +337,7 @@ run_cb_adaptive_train_unit() {
         ".env.scaler_path = \"${model_path}/scaler.pkl\"" \
         ".env.gnn_path = \"${model_path}/best_model.pt\""
 
-    python -m code.train.simulation --config "$cfg"
+    python -m rlac.run.simulate --config "$cfg"
 }
 
 run_cb_adaptive_test_unit() {
@@ -362,7 +362,7 @@ run_cb_adaptive_test_unit() {
         ".env.gnn_path = \"${model_path}/best_model.pt\"" \
         ".seed = ${seed}"
 
-    python -m code.train.simulation --config "$cfg"
+    python -m rlac.run.simulate --config "$cfg"
 }
 
 # =========================================================
