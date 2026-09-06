@@ -78,14 +78,19 @@ class SimpleReplayBuffer:
         node_map = state[0]
         r_map = reward[0] if isinstance(reward, tuple) and len(reward) == 2 and isinstance(reward[0], dict) else None
         r_vals = reward[1] if r_map is not None else None
+        if r_map is None:
+            # scalar reward: store for every node that acted
+            for p, i in node_map.items():
+                self.buffer.append((state[1][i], int(action[1][action[0].get(p, i)]),
+                                    float(reward) if np.isscalar(reward) else float(np.mean(reward))))
+            return
+        # reward is per-node for the *next* window: only store nodes that acted
+        # AND reappear in the reward map (indexed by the reward's own node order)
         for p, i in node_map.items():
-            s = state[1][i]
-            a = int(action[1][action[0].get(p, i)])
-            if r_vals is not None:
-                r = float(r_vals[r_map.get(p, i)])
-            else:
-                r = float(reward) if np.isscalar(reward) else float(np.mean(reward))
-            self.buffer.append((s, a, r))
+            if p not in r_map:
+                continue
+            self.buffer.append((state[1][i], int(action[1][action[0].get(p, i)]),
+                                float(r_vals[r_map[p]])))
 
     def sample(self, batch_size):
         k = min(len(self.buffer), batch_size)
