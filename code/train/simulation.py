@@ -335,7 +335,8 @@ def main():
     policy_manager = PolicyManager(data_module.df)
     attack_manager = Attack_Manager(
         attack_mode=cfg["env"]["attack_mode"],
-        fixed_intensity=cfg["env"].get("fixed_intensity", 0.5)
+        fixed_intensity=cfg["env"].get("fixed_intensity", 0.5),
+        random_seed=seed  # 让自适应攻击者 RNG 受 seed 控制，保证可复现
     )
 
     env = Env(
