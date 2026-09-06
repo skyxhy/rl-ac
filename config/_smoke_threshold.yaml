@@ -1,0 +1,28 @@
+# 最小 smoke：threshold 测试模式（8 步），需本地已有 sybil.csv + GNN 产物
+seed: 42
+mode: "test"
+test_mode: "threshold"
+num_episodes: 1
+batch_size: 64
+warmup_size: 200
+buffer_size: 20000
+save_dir: "outputs/simulation"
+env:
+  data_path: "sybil.csv"
+  scaler_path: "outputs/gnn_outputs/single_sybil_gnn/scaler.pkl"
+  gnn_path: "outputs/gnn_outputs/single_sybil_gnn/best_model.pt"
+  window_size: 1
+  alpha: 1
+  action_dim: 3
+  start_time: 30000
+  max_step: 8
+  attack_mode: "fixed"
+  fixed_intensity: 0.5
+  sight: 10
+agent:
+  device: "cpu"
+  hidden_dim: 256
+  checkpoint_path: "outputs/simulation/test/th_smoke.pt"
+threshold:
+  risk_threshold: 0.5
+save_name: "test/th_smoke"

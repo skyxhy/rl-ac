@@ -1,0 +1,28 @@
+seed: 42
+mode: "train" # "train" or "test"
+train_mode: "rl"
+test_mode: "rl" # "rl" or "threshold" (only used if mode=="test")
+train_episodes: 20
+batch_size: 64
+warmup_size: 200
+buffer_size: 20000
+save_dir: "outputs/simulation"
+env:
+  data_path: "sybil.csv"
+  scaler_path: "outputs/gnn_outputs/single_sybil_gnn/scaler.pkl"
+  gnn_path: "outputs/gnn_outputs/single_sybil_gnn/best_model.pt"
+  window_size: 1
+  alpha: 1
+  action_dim: 3
+  start_time: 30000
+  max_step: 100
+  attack_mode: "adaptive" # "adaptive" or "fixed"
+  fixed_intensity: 0.5 # Only used if attack_mode=="fixed"
+  sight: 20
+agent:
+  device: "cpu" # "cpu" or "cuda"
+  hidden_dim: 256 # Fixed the original `0.1` typo
+  checkpoint_path: "outputs/simulation/train_rl/best_agent.pt" # For test-rl
+  gamma: 0.9
+threshold:
+  risk_threshold: 0.5 # Only used if test_mode=="threshold"

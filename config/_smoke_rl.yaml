@@ -1,0 +1,30 @@
+# 最小 smoke：RL 训练（6 步/1 episode），验证 2-step 缓冲与 gamma 统一口径
+seed: 42
+mode: "train"
+train_mode: "rl"
+test_mode: "rl"
+train_episodes: 1
+batch_size: 16
+warmup_size: 4
+buffer_size: 500
+save_dir: "outputs/simulation"
+env:
+  data_path: "sybil.csv"
+  scaler_path: "outputs/gnn_outputs/single_sybil_gnn/scaler.pkl"
+  gnn_path: "outputs/gnn_outputs/single_sybil_gnn/best_model.pt"
+  window_size: 1
+  alpha: 1
+  action_dim: 3
+  start_time: 30000
+  max_step: 6
+  attack_mode: "fixed"
+  fixed_intensity: 0.5
+  sight: 10
+agent:
+  device: "cpu"
+  hidden_dim: 32
+  checkpoint_path: "outputs/simulation/train/smoke_rl.pt"
+  gamma: 0.9
+threshold:
+  risk_threshold: 0.5
+save_name: "train/smoke_rl"
