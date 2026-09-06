@@ -1,0 +1,30 @@
+# 复现环境（与开发机 conda env `its-grl` 对齐；版本可据本机调整）
+# 创建：conda env create -f environment.yml
+name: its-grl
+channels:
+  - pytorch
+  - pyg
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  # --- PyTorch 生态 ---
+  # GPU 版请按 https://pytorch.org/get-started/ 生成对应 index-url 后另行安装，
+  # 或在创建时显式指定 cuda 变体（如下方注释）：
+  #   conda install pytorch==2.2.2 pytorch-cuda=12.1 -c pytorch -c nvidia
+  - pytorch=2.2.2
+  - torchvision=0.17.2
+  - torchaudio=2.2.2
+  - pyg=2.5.3
+  # --- 数据 / 科学计算 ---
+  - numpy=1.26.4
+  - pandas=2.2.2
+  - pyyaml
+  - matplotlib
+  - scikit-learn
+  - xgboost
+  - joblib
+  - tqdm
+  - pip:
+      - -r requirements.txt

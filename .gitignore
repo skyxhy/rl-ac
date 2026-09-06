@@ -1,0 +1,19 @@
+# --- Python / env ---
+__pycache__/
+*.pyc
+.vscode/
+
+# --- Run artifacts & data (kept locally for running, not versioned) ---
+outputs/
+logs/
+legacy/
+*.pt
+*.npz
+*.npy
+*.log
+temp_shards_*/
+
+# --- Raw attack CSVs (regenerated from VeReMi via test-go) ---
+/*.csv
+/data/*.csv
+/test-go/output.csv
